@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>大強來了計數器</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Arial","Microsoft JhengHei",sans-serif;
+}
+
+body{
+    background:#1d1b26;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.app{
+    width:380px;
+    background:linear-gradient(180deg,#2b2235,#18141f);
+    border-radius:35px;
+    padding:25px;
+    box-shadow:0 15px 50px rgba(0,0,0,.5);
+    border:3px solid rgba(255,255,255,.05);
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h1{
+    font-size:42px;
+    color:#ffd633;
+    text-shadow:
+        0 4px 0 #9b6400,
+        0 0 20px rgba(255,214,51,.5);
+    font-weight:900;
+}
+
+.title p{
+    color:#ff9ed0;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.counter-box{
+    background:linear-gradient(180deg,#fff3c7,#ffe28a);
+    border-radius:30px;
+    padding:30px 20px;
+    text-align:center;
+    border:5px solid #ffbf00;
+    box-shadow:inset 0 4px 10px rgba(255,255,255,.5);
+}
+
+.counter-label{
+    font-size:26px;
+    color:#5e3d00;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+.counter{
+    font-size:82px;
+    font-weight:900;
+    color:#5e2d00;
+    letter-spacing:3px;
+}
+
+.btn-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:25px;
+}
+
+button{
+    border:none;
+    border-radius:22px;
+    padding:20px;
+    font-size:32px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.15s;
+    color:white;
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.btn1{
+    background:linear-gradient(180deg,#ffd93d,#ffb700);
+    color:#5c3200;
+}
+
+.btn10{
+    background:linear-gradient(180deg,#ff78b5,#ff4f95);
+}
+
+.btn100{
+    background:linear-gradient(180deg,#9c7bff,#6f55ff);
+}
+
+.clear{
+    width:100%;
+    margin-top:15px;
+    background:linear-gradient(180deg,#4fcbff,#268cff);
+}
+
+.bottom{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:white;
+    opacity:.85;
+    font-size:15px;
+}
+
+.switch{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+input[type=checkbox]{
+    width:20px;
+    height:20px;
+}
+
+.footer{
+    text-align:center;
+    color:#aaa;
+    margin-top:18px;
+    font-size:13px;
+}
+
+.duck{
+    font-size:50px;
+    text-align:center;
+    margin-bottom:10px;
+}
+.btn-grid.simple{
+    grid-template-columns:1fr;
+}
+
+.btn-grid.simple button{
+    width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="duck">🦆</div>
+
+    <div class="title">
+        <h1>大強來了</h1>
+        <p>嘎嘎數鴨計數器</p >
+    </div>
+
+    <div class="counter-box">
+        <div class="counter-label">目前累計數鴨</div>
+        <div class="counter" id="counter">0</div>
+    </div>
+
+   <div class="btn-grid simple">
+    <button class="btn1" onclick="add(1)">🦆 +1</button>
+    <button class="clear" onclick="resetCounter()">清零</button>
+</div>
+
+    <div class="bottom">
+        <div class="switch">
+            🔊 音效
+            <input type="checkbox" id="soundToggle" checked>
+        </div>
+
+        <div>
+            自動儲存 ✔
+        </div>
+    </div>
+
+    <div class="footer">
+        來自地獄倒楣蛋小吳🀄
+    </div>
+
+</div>
+
+<script>
+const counterEl = document.getElementById("counter");
+const soundToggle = document.getElementById("soundToggle");
+
+let count = localStorage.getItem("duckCount");
+
+if(count === null){
+    count = 0;
+}else{
+    count = parseInt(count);
+}
+
+updateDisplay();
+
+function add(num){
+    count += num;
+
+    saveData();
+
+    if(soundToggle.checked){
+        playSound();
+    }
+
+    updateDisplay();
+}
+
+function resetCounter(){
+    if(confirm("確定要清零嗎？")){
+        count = 0;
+        saveData();
+        updateDisplay();
+    }
+}
+
+function updateDisplay(){
+    counterEl.innerText = count.toLocaleString();
+}
+
+function saveData(){
+    localStorage.setItem("duckCount", count);
+}
+
+function playSound(){
+    const audio = new Audio(
+        "https://actions.google.com/sounds/v1/cartoon/pop.ogg"
+    );
+
+    audio.volume = 0.4;
+    audio.play();
+}
+</script>
+
+</body>
+</html>
