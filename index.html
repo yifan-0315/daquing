@@ -353,7 +353,7 @@ const effectLayer = document.getElementById("effect-layer");
 
 const duckImages = [
 
-    /*"1.png",
+    "1.png",
     "2.png",
     "3.png",
     "4.png",
@@ -373,10 +373,7 @@ const duckImages = [
     "17.png",
     "18.png",
     "19.png",
-    "20.png"*/
-"favicon.png",
-"favicon.png",
-"favicon.png"
+    "20.png"
 
 
 ];
@@ -394,7 +391,7 @@ function spawnDuck(){
             Math.floor(Math.random() * duckImages.length)
         ];
 
-    img.src = randomImage;
+    img.src = "pic/" +randomImage;
 
     img.className = "flying-duck";
 
