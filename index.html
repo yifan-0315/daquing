@@ -396,15 +396,42 @@ body[data-theme="purple"]{
 
     padding:18px;
 
-    display:none;
-
+    display:flex;
     flex-direction:column;
 
     gap:16px;
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:translateY(-10px);
+
+    transition:
+        max-height .35s ease,
+        opacity .25s ease,
+        transform .25s ease,
+        padding .25s ease;
 }
 
 .more-panel.show{
-    display:flex;
+       max-height:500px;
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    overflow-y:auto;
+
+    padding:18px;
+}
+
+.more-panel:not(.show){
+
+    padding-top:0;
+    padding-bottom:0;
 }
 
 .menu-hint{/*更多功能按鍵提示*/
@@ -463,9 +490,9 @@ body[data-theme="purple"]{
 <div class="app">
 
     <div class="duck">
-        <img src="favicon.png" alt="duck"> 
-        <img src="favicon.png" alt="duck"> 
-        <img src="favicon.png" alt="duck">
+        <img src="favicon.ico" type="image/x-icon"> 
+        <img src="favicon.ico" type="image/x-icon"> 
+        <img src="favicon.ico" type="image/x-icon"> 
     </div>
 
     <div class="title">
@@ -704,22 +731,37 @@ themeSelect.addEventListener("change", () => {
     );
 });
 
-function toggleMenu(){//顯示TOPbar
+function toggleMenu(){
 
-   const panel =
+    const panel =
         document.getElementById("morePanel");
 
     panel.classList.toggle("show");
 
     if(panel.classList.contains("show")){
 
-        document.body.style.overflow = "auto";
-    }
-    else{
-
-        document.body.style.overflow = "hidden";
+        panel.scrollTop = 0;
     }
 }
+
+function closeMenu(){
+
+    const panel =
+        document.getElementById("morePanel");
+
+    panel.classList.remove("show");
+
+    panel.scrollTop = 0;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    document.body.style.overflow = "hidden";
+}
+
+
 function bulkAddDuck(){//一次加鴨功能
 
     const input =
