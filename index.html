@@ -429,7 +429,7 @@ body[data-theme="purple"]{
     backdrop-filter:blur(10px);
 
     animation:hintFloat 2s ease-in-out infinite;
-    opacity:.55;
+    /*opacity:.55;*/
 }
 
 @keyframes hintFloat{
@@ -456,7 +456,7 @@ body[data-theme="purple"]{
     ⚙
 </button>
 <div class="menu-hint">
-   ✨清零及特效設定功能➜
+   ✨清零及特效功能設定➜
 </div>
 </div>
 
@@ -526,11 +526,17 @@ body[data-theme="purple"]{
 
     <div class="footer">
         *提醒:數鴨上限10萬，網頁關閉後紀錄還會在，電腦按一下+1後可以使用Enter連續點擊，謝謝強子謝謝紫紫桑。
-        </br>✨來自地獄倒楣蛋小吳🀄 V1.868
+
     
     </div>
 
 </div>
+
+     <div class="footer">
+       ✨來自地獄倒楣蛋小吳🀄 V1.868
+    
+    </div>
+
 </div>
 <div id="effect-layer"></div>
 <script>
@@ -559,6 +565,11 @@ function add(num){
     }
 
     updateDisplay();
+    
+    const panel =//auto收闔選單
+        document.getElementById("morePanel");
+    panel.classList.remove("show");
+    document.body.style.overflow = "hidden";
 }
 
 function resetCounter(){
