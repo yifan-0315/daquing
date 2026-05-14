@@ -330,7 +330,7 @@ body[data-theme="purple"]{
 </style>
 </head>
 
-<body data-theme="yellow">
+<body data-theme="yellow" >
 
 <div class="app">
 
@@ -345,7 +345,7 @@ body[data-theme="purple"]{
         <p>嘎嘎數鴨計數器</p >
     </div>
 
-    <div class="counter-box">
+    <div class="counter-box" onclick="add(1)">
         <div class="counter-label">目前累計數鴨</div>
         <div class="counter" id="counter">0</div>
     </div>
@@ -361,23 +361,28 @@ body[data-theme="purple"]{
             <input type="checkbox" id="soundToggle" >
         </div>
         <div class="switch">
-            🎉 飄屏動畫
+            🎉 大強飄屏
             <input type="checkbox" id="effectToggle" checked>
         </div>
+        
+    </div>
+    <div class="bottom">
         <div class="switch">
             🎨 主題
 
             <select id="themeSelect">
-                <option value="yellow">經典黃</option>
+                <option value="dark" disabled>有任何問題都可以跟倒楣蛋小吳說</option>
+                <option value="yellow" >經典黃</option>
+                <option value="purple">紫紫桑</option>
                 <option value="pink">粉紅嘎嘎</option>
                 <option value="dark">深夜黑金</option>
-                <option value="purple">紫紫桑</option>
+                <option value="dark" disabled>倒楣蛋專用</option>
+                
             </select>
         </div>
-            
-        
-    
     </div>
+
+
     <div class="footer">
         <div>
             ✔ 開音效或開飄屏按太快會卡哦
