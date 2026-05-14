@@ -20,7 +20,12 @@
 /*用戶自訂主題*/
 :root{
 
-    --bg:#1d1b26;
+    --bg:
+        linear-gradient(
+            180deg,
+            #1d1b26,
+            #111016
+        );
     --card1:#2b2235;
     --card2:#18141f;
 
@@ -31,17 +36,24 @@
 
     --btn1:#ffd93d;
     --btn2:#ffb700;
+
+    --btn-text:#5c3200;
 }
 
 
 body{
     /*background:#1d1b26;*/
-    background:var(--bg);
+   background:var(--bg);
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     min-height:100vh;
+
     padding:20px;
+
+    transition:.3s;
 }
 .app{
     width:380px;
@@ -135,7 +147,8 @@ button:active{
             var(--btn1),
             var(--btn2)
         );
-    color:#5c3200;
+
+    color:var(--btn-text);
 }
 
 .btn10{
@@ -267,11 +280,18 @@ body[data-theme="pink"]{
 
     --btn1:#ff92c9;
     --btn2:#ff5ba6;
+
+    --btn-text:white;
 }
 
 body[data-theme="dark"]{
 
-    --bg:#101010;
+    --bg:
+        linear-gradient(
+            180deg,
+            #1f1b12,
+            #0d0d0d
+        );
 
     --card1:#232323;
     --card2:#151515;
@@ -283,11 +303,18 @@ body[data-theme="dark"]{
 
     --btn1:#444;
     --btn2:#222;
+
+    --btn-text:#ffd700;
 }
 
 body[data-theme="purple"]{
 
-    --bg:#24142f;
+     --bg:
+        linear-gradient(
+            180deg,
+            #3a1c52,
+            #1b1026
+        );
 
     --card1:#43215e;
     --card2:#241232;
