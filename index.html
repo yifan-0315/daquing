@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <!-- 這裡放 Favicon 縮圖設定 -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico?v2" type="image/x-icon">
     <!-- 如果使用 PNG 格式 -->
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 <title>大強來了計數器</title>
@@ -73,10 +73,15 @@ body{
 }
 
 .counter{
-    font-size:82px;
     font-weight:900;
     color:#5e2d00;
-    letter-spacing:3px;
+
+    width:100%;
+    text-align:center;
+
+    white-space:nowrap;
+
+    transition:.15s;
 }
 
 .btn-grid{
@@ -214,7 +219,7 @@ input[type=checkbox]{
     </div>
 
     <div class="footer">
-        來自地獄倒楣蛋小吳🀄 V1.6
+        來自地獄倒楣蛋小吳🀄 V1.86
     </div>
 
 </div>
@@ -255,6 +260,23 @@ function resetCounter(){
 
 function updateDisplay(){
     counterEl.innerText = count.toLocaleString();
+    const length = count.toString().length;
+    if(length <= 3){
+        counterEl.style.fontSize = "82px";
+    }
+    else if(length === 4){
+        counterEl.style.fontSize = "72px";
+    }
+    else if(length === 5){
+        counterEl.style.fontSize = "60px";
+    }
+    else if(length === 6){
+        counterEl.style.fontSize = "50px";
+    }
+    else{
+        counterEl.style.fontSize = "42px";
+    }
+
 }
 
 function saveData(){
