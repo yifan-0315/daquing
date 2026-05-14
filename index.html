@@ -179,6 +179,50 @@ input[type=checkbox]{
     filter:
         drop-shadow(0 8px 12px rgba(0,0,0,.35));
 }
+
+#effect-layer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:9999;
+}
+
+.flying-duck{
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    object-fit:contain;
+
+    animation:floating 2.5s linear forwards;
+}
+
+@keyframes floating{
+
+    0%{
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(.6);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-700px)
+            rotate(360deg)
+            scale(1.2);
+
+        opacity:0;
+    }
+}
 </style>
 </head>
 
@@ -216,7 +260,15 @@ input[type=checkbox]{
         <div>
             ✔ 開啟音效按太快會卡頓哦
         </div>
+    
     </div>
+     <div class="bottom">
+        <div class="switch">
+    🎉 飄屏動畫
+    <input type="checkbox" id="effectToggle" checked>
+</div>
+     </div>
+    
 
     <div class="footer">
         *提醒:數鴨上限10萬，網頁關閉後紀錄還會在，電腦按一下+1後可以使用Enter連續點擊，謝謝強子謝謝紫紫桑。
@@ -225,7 +277,7 @@ input[type=checkbox]{
     </div>
 
 </div>
-
+<div id="effect-layer"></div>
 <script>
 const counterEl = document.getElementById("counter");
 const soundToggle = document.getElementById("soundToggle");
@@ -241,9 +293,11 @@ if(count === null){
 updateDisplay();
 
 function add(num){
+
     count += num;
 
     saveData();
+    spawnDuck();
 
     if(soundToggle.checked){
         playSound();
@@ -292,6 +346,74 @@ function playSound(){
 
     audio.volume = 0.4;
     audio.play();
+}
+
+const effectToggle = document.getElementById("effectToggle");
+const effectLayer = document.getElementById("effect-layer");
+
+const duckImages = [
+
+    /*"1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "10.png",
+
+    "11.png",
+    "12.png",
+    "13.png",
+    "14.png",
+    "15.png",
+    "16.png",
+    "17.png",
+    "18.png",
+    "19.png",
+    "20.png"*/
+"favicon.png",
+"favicon.png",
+"favicon.png"
+
+
+];
+
+function spawnDuck(){
+
+    if(!effectToggle.checked){
+        return;
+    }
+
+    const img = document.createElement("img");
+
+    const randomImage =
+        duckImages[
+            Math.floor(Math.random() * duckImages.length)
+        ];
+
+    img.src = randomImage;
+
+    img.className = "flying-duck";
+
+    img.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    img.style.bottom = "-100px";
+
+    img.style.width =
+        60 + Math.random() * 80 + "px";
+
+    img.style.animationDuration =
+        1.5 + Math.random() * 2 + "s";
+
+    effectLayer.appendChild(img);
+
+    setTimeout(() => {
+        img.remove();
+    }, 3000);
 }
 </script>
 
