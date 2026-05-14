@@ -17,18 +17,40 @@
     font-family:"Arial","Microsoft JhengHei",sans-serif;
 }
 
+/*用戶自訂主題*/
+:root{
+
+    --bg:#1d1b26;
+    --card1:#2b2235;
+    --card2:#18141f;
+
+    --title:#ffd633;
+
+    --counter1:#fff3c7;
+    --counter2:#ffe28a;
+
+    --btn1:#ffd93d;
+    --btn2:#ffb700;
+}
+
+
 body{
-    background:#1d1b26;
+    /*background:#1d1b26;*/
+    background:var(--bg);
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
     padding:20px;
 }
-
 .app{
     width:380px;
-    background:linear-gradient(180deg,#2b2235,#18141f);
+    background:
+        linear-gradient(
+            180deg,
+            var(--card1),
+            var(--card2)
+        );
     border-radius:35px;
     padding:25px;
     box-shadow:0 15px 50px rgba(0,0,0,.5);
@@ -107,7 +129,12 @@ button:active{
 }
 
 .btn1{
-    background:linear-gradient(180deg,#ffd93d,#ffb700);
+    background:
+        linear-gradient(
+            180deg,
+            var(--btn1),
+            var(--btn2)
+        );
     color:#5c3200;
 }
 
@@ -222,11 +249,61 @@ input[type=checkbox]{
 
         opacity:0;
     }
+
+}
+
+/*主題CSS*/
+body[data-theme="pink"]{
+
+    --bg:#2b1624;
+
+    --card1:#44213a;
+    --card2:#2a1524;
+
+    --title:#ff8dc7;
+
+    --counter1:#ffd6ea;
+    --counter2:#ffb6d8;
+
+    --btn1:#ff92c9;
+    --btn2:#ff5ba6;
+}
+
+body[data-theme="dark"]{
+
+    --bg:#101010;
+
+    --card1:#232323;
+    --card2:#151515;
+
+    --title:#ffd700;
+
+    --counter1:#2d2d2d;
+    --counter2:#1a1a1a;
+
+    --btn1:#444;
+    --btn2:#222;
+}
+
+body[data-theme="purple"]{
+
+    --bg:#24142f;
+
+    --card1:#43215e;
+    --card2:#241232;
+
+    --title:#cf9fff;
+
+    --counter1:#ead8ff;
+    --counter2:#caa8ff;
+
+    --btn1:#bb86fc;
+    --btn2:#8e5cff;
 }
 </style>
 </head>
 
-<body>
+<body data-theme="yellow">
 
 <div class="app">
 
@@ -260,7 +337,17 @@ input[type=checkbox]{
             🎉 飄屏動畫
             <input type="checkbox" id="effectToggle" checked>
         </div>
-     
+        <div class="switch">
+            🎨 主題
+
+            <select id="themeSelect">
+                <option value="yellow">經典黃</option>
+                <option value="pink">粉紅嘎嘎</option>
+                <option value="dark">深夜黑金</option>
+                <option value="purple">紫紫桑</option>
+            </select>
+        </div>
+            
         
     
     </div>
@@ -413,6 +500,31 @@ function spawnDuck(){
         img.remove();
     }, 3000);
 }
+//主題調整
+const themeSelect =
+    document.getElementById("themeSelect");
+
+const savedTheme =
+    localStorage.getItem("duckTheme");
+
+if(savedTheme){
+
+    document.body.dataset.theme = savedTheme;
+
+    themeSelect.value = savedTheme;
+}
+
+themeSelect.addEventListener("change", () => {
+
+    const theme = themeSelect.value;
+
+    document.body.dataset.theme = theme;
+
+    localStorage.setItem(
+        "duckTheme",
+        theme
+    );
+});
 </script>
 
 </body>
