@@ -69,6 +69,7 @@ body{
     padding:25px;
     box-shadow:0 15px 50px rgba(0,0,0,.5);
     border:3px solid rgba(255,255,255,.05);
+      position:relative;
 }
 
 .title{
@@ -344,22 +345,45 @@ body[data-theme="purple"]{
     margin-bottom:10px;
 }
 
-.menu-btn{
+.menu-fab{
 
-    width:52px;
-    height:52px;
+    position:absolute;
 
-    border-radius:18px;
+    top:18px;
+    right:18px;
 
-    font-size:28px;
+    width:48px;
+    height:48px;
 
-    background:#ffffff10;
+    border-radius:999px;
 
-    backdrop-filter:blur(10px);
+    border:none;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
 
     color:white;
 
-    border:1px solid rgba(255,255,255,.08);
+    font-size:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:999;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,.25);
+}
+.menu-fab{/*menu閒置時半透明*/
+    opacity:.35;
+    transition:.2s;
+}
+
+.menu-fab:hover,
+.menu-fab:active{
+    opacity:1;
 }
 
 .more-panel{
@@ -382,17 +406,60 @@ body[data-theme="purple"]{
 .more-panel.show{
     display:flex;
 }
+
+.menu-hint{/*更多功能按鍵提示*/
+
+    position:absolute;
+
+    top:28px;
+    right:74px;
+
+    background:rgba(0,0,0,.45);
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    white-space:nowrap;
+
+    backdrop-filter:blur(10px);
+
+    animation:hintFloat 2s ease-in-out infinite;
+    opacity:.55;
+}
+
+@keyframes hintFloat{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(-4px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+}
 </style>
 </head>
 
 <body data-theme="yellow" >
 <div class="top-bar">
 
-    <button class="menu-btn" onclick="toggleMenu()">
-        ☰
-    </button>
-
+    <button class="menu-fab" onclick="toggleMenu()">
+    ⚙
+</button>
+<div class="menu-hint">
+   ✨清零及特效設定功能➜
 </div>
+</div>
+
 <div class="app">
 
     <div class="duck">
