@@ -741,6 +741,11 @@ function toggleMenu(){
     if(panel.classList.contains("show")){
 
         panel.scrollTop = 0;
+         document.body.style.overflow = "auto";
+    }
+    else{
+
+        document.body.style.overflow = "hidden";
     }
 }
 
